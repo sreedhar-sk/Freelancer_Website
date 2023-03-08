@@ -1,0 +1,113 @@
+<!doctype html>
+{% extends "main/base.html" %}
+
+{% block bgimage %}
+        .bodyblock{
+			background-image: url("https://assets.kpmg.com/is/image/kpmg/illustration-man-working-on-computer-woman-dog-walking:cq5dam.web.1400.500");
+			background-color: rgba(0,0,0,0.8);
+		    background-blend-mode: multiply;
+		     background-position: center;
+  			background-repeat: no-repeat;
+		    background-size: cover;
+		    height: 100%;
+		    overflow:auto;
+		}
+		#title{
+			padding:0px;
+			margin:0px;
+			color: black;
+			text-align:center;
+			font-weight:bold;
+			font-family: 'Shantell Sans', cursive;
+			font-size:50px;
+		}
+		.main{
+			border-radius: 50px;
+			position:relative;
+			top:25px;
+			left: 500px;
+			background-color:rgba(255,255,255,0.75);
+			width:720px;
+			height:950px;
+			border: 1px solid black;
+			padding:15px;
+			margin:20px 20px 20px 20px;
+			}
+		.container{
+			position:relative;
+ 			padding: 0px 0px 0px 0px;
+			height:850px;
+			margin: 0;
+		}
+		.container form{
+			position:relative;
+			width: 650px;
+			border:0px;
+			margin:0px;
+			padding:0px;
+		}
+		.crispy-form{
+			margin:0;
+			padding:0;
+			border:0;
+		}
+		.form-text{
+			color:black;
+			font-weight:bold;
+			font-family: 'Shantell Sans', cursive;
+		}
+		.form-text ul li{
+			color:black;
+			font-weight:bold;
+			font-family: 'Shantell Sans', cursive;
+		}
+		.crispy-form input, .crispy-form label{
+			color:black;
+			font-weight:bold;
+			font-family: 'Shantell Sans', cursive;
+		}
+		.text-center,.text-center a{
+			margin:0;
+			padding: 0;
+			border:0;
+			color:black;
+			text-align:center;
+			font-weight:bold;
+			font-family: 'Shantell Sans', cursive;
+		}
+		.text-center a{
+			color:blue;
+		}
+		.button-signup{
+			color:white;
+			background-color:green;
+			font-size: 16px;
+			padding: 10px 24px;
+			border: 2px solid green;
+			border-radius: 12px;
+			font-family: 'Shantell Sans', cursive;
+		}
+		.button-signup:hover{
+			box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24), 0 17px 50px 0 rgba(0,0,0,0.19);
+			border: 2px solid #4CAF50;
+		}
+
+{% endblock %}
+
+{% block title %}
+<title>FYP_SignUp</title>
+{% endblock %}
+{% block content %}         
+{% load crispy_forms_tags %}
+{% include 'register/messages.html' %}
+<div class="container py-5">
+	<h1 id="title">Sign Up</h1>
+	<form class="crispy-form" method="POST">
+		{% csrf_token %}
+		{{ form | crispy}}                    
+		<button class="button-signup" type="submit">SignUp</button>
+	</form>
+	<p class="text-center">If you already have an account, <a href="/login">Login</a> instead.</p>
+</div>
+
+{% endblock %}

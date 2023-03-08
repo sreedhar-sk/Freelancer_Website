@@ -1,0 +1,147 @@
+{% extends "main/base.html" %}
+
+{% block bgimage %}
+    .bodyblock{
+      background-color: rgba(0,0,0,0.8);
+      background-image: url("https://assets.kpmg.com/is/image/kpmg/illustration-standing-man-touching-computer-screen:cq5dam.web.1200.630");
+      background-blend-mode: multiply;
+      background-position: center;
+      background-repeat: no-repeat;
+      background-size: cover;
+      height: 100%;
+      overflow:auto;
+    }
+    #title{
+      padding:0px;
+      margin:0px;
+      font-weight:bold;
+      color: black;
+      text-align:center;
+      font-family: 'Shantell Sans', cursive;
+      font-size:50px;
+    }
+    .main{
+      border-radius: 25px;
+      position:relative;
+      top:150px;
+      left: 600px;
+      background-color: rgba(255,255,255,0.6);
+      width:550px;
+      min-height:500px;
+      display:inline-flex;
+      justify-content: center;
+      border: 1px solid black;
+      padding:0px 10px 30px 10px;
+      margin:20px 20px 20px 20px;
+      }
+      .container{
+      position:relative;
+      padding: 0px 0px 0px 0px;
+      height:350px;
+      margin: 0;
+    }
+    .container form{
+      position:relative;
+      width: 500px;
+      border:0px;
+      margin:0px;
+      padding:0px;
+    }
+    .crispy-form{
+      margin:0;
+      padding:0;
+      border:0;
+    }
+    .form-text{
+      color:black;
+      font-weight:bold;
+      font-family: 'Shantell Sans', cursive;
+    }
+    .crispy-form input, .crispy-form label{
+      color:black;
+      font-weight:bold;
+      font-family: 'Shantell Sans', cursive;
+    }
+    .text-center,.text-center a{
+      margin:0;
+      padding-down: 50px;
+      border:0;
+      color:black;
+      font-weight:bold;
+      text-align:center;
+      font-family: 'Shantell Sans', cursive;
+    }
+    .text-center a{
+      color:blue;
+    }
+    .btn-primary{
+      color:white;
+      font-family: 'Shantell Sans', cursive;
+    }
+    .button{
+      display:block;
+    }
+    .button-login{
+      color:white;
+      background-color:green;
+      font-size: 16px;
+      padding: 10px 24px;
+      margin:10px 0px;
+      border: 2px solid green;
+      border-radius: 12px;
+      font-family: 'Shantell Sans', cursive;
+    }
+    .google-login{
+      background-color:#ff5349;
+      font-size: 20px;
+      padding: 10px 50px;
+      border-radius: 8px;
+      width: 85%;
+      margin:auto;
+      padding: 10px 5px;
+    }
+    .google-login:hover{
+      box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24), 0 17px 50px 0 rgba(0,0,0,0.19);
+    }
+    .button-text{
+      font-family: 'Shantell Sans', cursive;
+      color:white;
+    }
+    .button-text:hover{
+      color:white;
+      text-decoration:none;
+    }
+    .button-login:hover{
+      box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24), 0 17px 50px 0 rgba(0,0,0,0.19);
+      border: 2px solid #4CAF50;
+    }
+{% endblock %}
+
+
+{% block content %}      
+
+{% load crispy_forms_tags %}
+
+{% load socialaccount %}
+  
+
+<div class="container py-5">
+  {% include 'register/messages.html' %}
+  <h1 id="title">Login</h1>
+  <form class="crispy-form" method="POST">
+    {% csrf_token %}
+    {{ login_form|crispy }}
+    <button class="button button-login" type="submit">Login</button>
+      <button class="button google-login">
+      <a class="button-text" href="{% provider_login_url 'google'%}?next/">
+        <i></i>
+        <img src="https://ragsdalemartin.com/wp-content/uploads/2020/07/white-google-logo.png"  width="60" height="30"/>
+        Sign in with Google
+      </a>
+    </button>
+    <p class="text-center">Don't have an account? <a href="/register">Create an account</a></p>
+  </form>
+</div>
+
+{% endblock %}
+

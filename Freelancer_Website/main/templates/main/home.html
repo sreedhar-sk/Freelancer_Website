@@ -1,0 +1,98 @@
+<!doctype html>
+<html>
+	<head>
+		<style type="text/css">
+		@import url('https://fonts.googleapis.com/css2?family=Shantell+Sans:wght@300&display=swap');
+		@import url('https://fonts.googleapis.com/css2?family=Trade+Winds&display=swap');
+		*{
+			box-sizing: border-box;
+			font-family: sans-serif;
+			color: #777;
+		}
+		html{
+			margin: 0;
+			padding: 0;
+		}
+		.bodyblock{
+			background-image: url("https://images.unsplash.com/photo-1497032628192-86f99bcd76bc?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2070&q=80");
+			background-color: rgba(0,0,0,0.6);
+		    background-blend-mode: multiply;
+		    background-size: cover;
+		}
+		.topnav {
+			height:10%;
+			width:100%;
+			top:0;
+			left:0;
+			padding-top:20px;
+			display: inline-flex;
+			justify-content: center;
+			font-size: 1.1em;
+			font-weight: lighter;
+			border-bottom: 1px solid rgba(255, 255, 255, 0.3);
+		}    
+		
+        .topnav a {
+			text-decoration: none;
+			font-size:25px;
+			font-family: 'Shantell Sans', cursive;
+			color: white;
+			display:inline-block;
+			padding: 0 5%;
+			border-bottom: 1px solid rgba(255,255,255,255,0.3);
+		}  
+  
+        .topnav a:hover{
+			background-color:rgba(255, 255, 255, 0.3);
+			font-weight: bold;
+			text-decoration: none;
+			color: whitesmoke;
+		}     
+
+        .main{
+		}   
+		.mt-2{
+			margin: 0;
+			padding: 30px;
+			text-align: center;
+			font-family: 'Trade Winds', cursive;
+			color: white;
+			font-size: 5em;
+			font-weight: normal;
+		}
+        </style>
+ 
+		<meta charset="utf-8">
+	    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+	 
+		<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
+		<title>{% block title %}
+		FYP_About
+		{% endblock %}</title>
+
+	</head>
+	<body>
+		<div class=bodyblock>
+		<div class="topnav">
+			<a href="/home">About</a>
+			<a href="/register">Sign-Up</a>
+			<a href="/login">Login</a>
+	    </div>
+ 
+		<div id="content" name="content" class="main">
+			<div class="row justify-content-center">
+				<div class="col-8">
+					{% block content %}
+					<h1 class="mt-2">Find Your Programmer</h1>
+					<h6 class="mt-3">Together we can do what none of us could do alone</h6>
+					{% endblock %}
+				</div>
+			</div>
+		</div>
+		</div>
+		<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+	    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+	    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+	</body>
+</html>
