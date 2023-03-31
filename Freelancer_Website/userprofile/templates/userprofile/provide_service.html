@@ -1,0 +1,78 @@
+{% extends "userprofile/profile.html" %}
+{% block style%}
+  .model-form{
+  position: relative;
+  top: 100px;
+  left:525px;
+  box-sizzing:border-box;
+  width:900px;
+  height:1000px;
+  }
+   #title{
+    position:relative;
+    top: 0px;
+    left:-100px;
+      padding:10px;
+      margin:0px;
+      font-weight:bold;
+      color: black;
+      text-align:center;
+      font-family: 'Shantell Sans', cursive;
+      font-size:50px;
+    }
+    .form div{
+      padding:10px;
+    }
+    .form button{
+      padding-left:10px;
+    }
+    .model-form input, .model-form label{
+      color:black;
+      font-weight:bold;
+      font-family: 'Shantell Sans', cursive;
+    }
+ #div_id_first_name input,#div_id_last_name input,#div_id_email input,#div_id_mobile_num input,#div_id_hourly_rate input,#div_id_service input,#div_id_skills input,#div_id_location input{
+      width:700px;
+      height:50px;
+      padding:10px;
+      font-size:18px;
+      font-weight:normal;
+    }
+    #div_id_description input{
+      width:700px;
+      height:250px;
+      padding:10px;
+      font-size:18px;
+      font-weight:normal;
+    }
+    .button{
+      background-color: #008CBA;
+      font-size: 25px;
+      padding: 10px 24px;
+      border-radius: 12px;
+      font-weight:bold;
+      border: 2px solid #008CBA;
+    }
+{% endblock %}
+
+{% block content %}
+
+{% load crispy_forms_tags %}
+
+{% if submitted %}
+    Your Details is Added to the System
+{% else %}
+    <div class="model-form">
+    <h1 id="title">Service Provider Information</h1>
+      <form class="form" method="POST">
+        {% csrf_token %}
+        {{ form|crispy }}
+        <button class="button" type="submit">Save Info</button>
+        <br/>
+    <br/>
+    <div></div>
+    </form>
+    </div>
+
+{% endif %}
+{% endblock%}

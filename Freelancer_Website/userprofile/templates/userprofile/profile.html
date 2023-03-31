@@ -1,0 +1,403 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Dashboard</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"/>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <style type="text/css">
+@import url('https://fonts.googleapis.com/css2?family=Trade+Winds&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Shantell+Sans:wght@300&display=swap');
+*{
+  margin: 0;
+  padding: 0;
+  text-decoration: none;
+  box-sizing: border-box;
+  font-family: 'Shantell Sans', cursive;
+}
+    html{
+      margin: 0;
+      padding: 0;
+    }
+body, html {
+        height: 100%;
+        width: 100%;
+    }
+body{
+  position: absolute;
+  top: 0;
+  background-color: rgb(255,255,255,0.3); 
+  background-blend-mode: multiply;
+  background-position: center;
+  background-size: cover;
+  overflow-y:auto;
+  overflow-x:hidden;
+}
+
+.topnav{
+  position: absolute;
+  background: black;
+  top: 0;
+  width: 100%;
+  padding: 10px;
+  height: 75px; 
+  display: inline-flex;
+  justify-content: center;
+}
+.text{
+  margin: 0;
+  text-align: justify-all;
+  font-family: 'Trade Winds', cursive;
+  color: white;
+  font-size: 40px;
+  font-weight: normal;
+}
+.rightnav{
+  position: absolute;
+  background: black;
+  top: 0;
+  left: 1250px;
+  width: 500px;
+  height: 75px;
+  padding: 30px 10px 5px 10px;
+}
+
+.rightnav a{
+  font-size: 18px;
+  padding: 10px;
+  color: whitesmoke;
+}
+.left-nav{
+  position: fixed;
+  height: 100%;
+  left: 0;
+  bottom: 0;
+  width: 50px;
+  padding:10px ;
+  background: black;
+  overflow: auto;
+  transition: 1s
+}
+.left-nav:hover{
+  width: 275px;
+  transition: 1s;
+}
+.left-nav a{
+  width: 300px;
+  height: 25px;
+  font-size: 20px;
+  color: rgb(85, 83, 83);
+  display: table;
+  padding: 10px;
+}  
+.left-nav .fas, .left-nav .fab{
+  width: 40px;
+  height: 40px;
+  font-size: 20px;
+}
+.nav-item{
+  margin-left: 10px;
+  padding-top: 15px;
+  color: grey;
+}
+.dashboard-item li{
+  height: 70px;
+  padding: 10px 10px 0px 0px;
+}
+.dashboard-item li:hover{
+  background-color: ghostwhite;
+  font-weight: bold;
+   color: black;
+}
+.dashboard{
+  background-color: black;
+  color: white;
+  font-size: 25px;
+  font-weight: bold;
+  padding-top: 5px;
+}
+.dropdown{
+  display: inline-block;
+}
+.profile-content{
+  display: none;
+  position: absolute;
+  background-color: whitesmoke;
+  color: black;
+  min-width: 160px;
+  padding-top: 10px;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  z-index: 1;
+}
+.profile-content object a{
+  padding:  10px;
+  color: black;
+  display: block;
+}
+.profile:hover .profile-content{
+  display:  block;
+  min-height: 50px;
+}
+.message{
+  position: relative;
+  top: 100px;
+}
+.post{
+      background-color: blue;
+      font-size: 10px;
+      padding: 10px 24px;
+      border-radius: 4px;
+      font-weight: bold;
+    }
+{% block style%}
+.searchcontainer{
+      position: relative;
+      top: 100px;
+      left:450px;
+      height: 700px;
+      overflow-y: inherit ;
+    }
+.searchcontainer1{
+      position: relative;
+      top: -600px;
+      left:900px;
+      height: 700px;
+      overflow-y: inherit ;
+    }
+#title{
+      position: relative;
+      top:100px;
+      left:750px;
+    }
+#else{
+  position: relative;
+  top:100px;
+  left:625px;
+  font-size:20px;
+}
+.search-results{
+      width:400px;
+      min-height:100px;
+      border-color:black;
+      border-width: 2px;
+      border-style:solid;
+      padding:20px;
+    }
+    .personal{
+      display:inline-block;
+    }
+    em{
+      font-weight:bold;
+    }
+    .star{
+      padding:5px;
+    }
+  
+    .personal p{
+      padding:5px;
+    }
+    .service-content p{
+      padding:5px;
+    }
+    .checked {
+        color: orange;
+    }
+    .des{
+      text-align:justify;
+    }
+    
+{% endblock %}
+</style>
+</head>
+<body>
+  <div class="topnav">
+         <span class="text">Find Your Programmer</span>
+          <div class="rightnav">
+          <object> <a href="/tickets" class="post btn btn-primary" role="button">Post A Project</a></object>
+          <a href="/cart"><i style="font-size:18px" class="fa">&#xf07a;</i> Cart</a>
+          <a href="/wishlist"><i style="font-size:18px" class="fa">&#xf004;</i> Wishlist</a>
+          <div class="dropdown">
+            <a class="profile"><i style="font-size:18px" class="fa">&#xf2bd;</i> 
+            Profile
+            <div class="profile-content">
+              <object>
+                <a href="/updateprofile">Edit Profile</a>
+                <a href="#">Logout</a>
+              </object>
+            </div>
+              </a>
+            </div>
+        </div> 
+      </div>  
+    {% block content%}
+ <h1 id="title"> Favourites </h1>
+{% if skillsobj %}
+<div class="searchcontainer">
+      {% for s in skillsobj %}
+      <br/>
+        <div class="search-results">
+              <img src="https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png" alt="profile_pic" style="width:100px; height:120px;">
+              <div class="personal">
+                  
+           <p class="name"> <em>Name :</em> {{s.first_name}} {{s.last_name}} </p>
+           <p class="email"><em> Email Id :</em> {{s.email}} </p>
+           <p class="num"> <em> Mobile Number: </em>{{s.mobile_num}} </p>
+           <p class="location"><em> Location : </em> {{s.location}}</p>
+        </div>
+        <p class="rate" style="float:right"><em>Dollar Per Hour : </em> {{s.hourly_rate}}
+         <p class="star"> <em> Ratings :</em> 
+            {% if s.ratings == 1 %}
+            <span class="fa fa-star checked"></span>
+          <span class="fa fa-star"></span>
+          <span class="fa fa-star"></span>
+          <span class="fa fa-star"></span>
+          <span class="fa fa-star"></span>
+          {% endif %}
+          {% if s.ratings == 2 %}
+            <span class="fa fa-star checked"></span>
+          <span class="fa fa-star checked"></span>
+          <span class="fa fa-star"></span>
+          <span class="fa fa-star"></span>
+          <span class="fa fa-star"></span>
+          {% endif %}
+          {% if s.ratings == 3 %}
+            <span class="fa fa-star checked"></span>
+          <span class="fa fa-star checked"></span>
+          <span class="fa fa-star checked"></span>
+          <span class="fa fa-star"></span>
+          <span class="fa fa-star"></span>
+          {% endif %}
+          {% if s.ratings == 4 %}
+            <span class="fa fa-star checked"></span>
+          <span class="fa fa-star checked"></span>
+          <span class="fa fa-star checked"></span>
+          <span class="fa fa-star checked"></span>
+          <span class="fa fa-star"></span>
+          {% endif %}
+          {% if s.ratings == 5 %}
+            <span class="fa fa-star checked"></span>
+          <span class="fa fa-star checked"></span>
+          <span class="fa fa-star checked"></span>
+          <span class="fa fa-star checked"></span>
+          <span class="fa fa-star checked"></span>
+          {% endif %}
+
+        </p>
+         <div class="service-content">
+            <p class="service"><em> Services : </em> {{s.service}}</P>
+          <p class="skills"> <em> Skills : </em> {{s.skills}} </p>
+         </div>
+        </div>
+       {% endfor %} 
+{% else %}
+<br/>
+<p id="else" width = "100%"> No Providers have been added to your Wish List yet</p>
+{%endif%}
+<br/>
+<br/>
+<div></div>
+</div>
+{% if locationobj %}
+<div class="searchcontainer1">
+      {% for s in locationobj %}
+      <br/>
+        <div class="search-results">
+              <img src="https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png" alt="profile_pic" style="width:100px; height:120px;">
+              <div class="personal">
+                  
+           <p class="name"> <em>Name :</em> {{s.first_name}} {{s.last_name}} </p>
+           <p class="email"><em> Email Id :</em> {{s.email}} </p>
+           <p class="num"> <em> Mobile Number: </em>{{s.mobile_num}} </p>
+           <p class="location"><em> Location : </em> {{s.location}}</p>
+        </div>
+        <p class="rate" style="float:right"><em>Dollar Per Hour : </em> {{s.hourly_rate}}
+         <p class="star"> <em> Ratings :</em> 
+            {% if s.ratings == 1 %}
+            <span class="fa fa-star checked"></span>
+          <span class="fa fa-star"></span>
+          <span class="fa fa-star"></span>
+          <span class="fa fa-star"></span>
+          <span class="fa fa-star"></span>
+          {% endif %}
+          {% if s.ratings == 2 %}
+            <span class="fa fa-star checked"></span>
+          <span class="fa fa-star checked"></span>
+          <span class="fa fa-star"></span>
+          <span class="fa fa-star"></span>
+          <span class="fa fa-star"></span>
+          {% endif %}
+          {% if s.ratings == 3 %}
+            <span class="fa fa-star checked"></span>
+          <span class="fa fa-star checked"></span>
+          <span class="fa fa-star checked"></span>
+          <span class="fa fa-star"></span>
+          <span class="fa fa-star"></span>
+          {% endif %}
+          {% if s.ratings == 4 %}
+            <span class="fa fa-star checked"></span>
+          <span class="fa fa-star checked"></span>
+          <span class="fa fa-star checked"></span>
+          <span class="fa fa-star checked"></span>
+          <span class="fa fa-star"></span>
+          {% endif %}
+          {% if s.ratings == 5 %}
+            <span class="fa fa-star checked"></span>
+          <span class="fa fa-star checked"></span>
+          <span class="fa fa-star checked"></span>
+          <span class="fa fa-star checked"></span>
+          <span class="fa fa-star checked"></span>
+          {% endif %}
+
+        </p>
+         <div class="service-content">
+            <p class="service"><em> Services : </em> {{s.service}}</P>
+          <p class="skills"> <em> Skills : </em> {{s.skills}} </p>
+         </div>
+        </div>
+       {% endfor %} 
+{% else %}
+<br/>
+<p id="else" width = "100%"> No Providers have been added to your Wish List yet</p>
+{%endif%}
+<br/>
+<br/>
+<div></div>
+</div>
+    {% endblock %}
+    <nav class="left-nav">
+      <ul>
+        <li><a href="/profile">
+          <div class="dashboard">
+            <i class="fas fa-bars" style="font-size: 25px;"></i>
+            <span>Dashboard</span>
+            </div>
+        </a></li>
+        <div class="dashboard-item">
+        <li><a href="/search">
+          <i class="fas fa-search" style="font-size:18px;"></i>
+          <span class="nav-item">Search</span>
+        </a></li>
+        <li><a href="/ticket_list">
+          <i class='fab fa-dev' style='font-size:18px'></i>
+          <span class="nav-item">Provide Service</span>
+        </a></li>
+        <li><a href="#">
+          <i class="fas fa-ticket-alt" style="font-size:18px;"></i>
+          <span class="nav-item">Your Tickets</span>
+        </a></li>
+        <li><a href="#">
+          <i class="fas fa-wallet" style="font-size:18px;"></i>
+          <span class="nav-item">Payment methods</span>
+        </a></li>
+        <li><a href="#">
+          <i class="fas fa-user-cog" style="font-size:18px;"></i>
+          <span class="nav-item">Settings</span>
+        </a></li>
+         </div>
+      </ul>
+    </nav>
+
+
+
+</body>
+</html>

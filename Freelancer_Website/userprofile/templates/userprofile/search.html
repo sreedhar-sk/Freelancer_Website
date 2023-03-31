@@ -1,0 +1,347 @@
+{% extends "userprofile/profile.html" %}
+{% block style%}
+		.searchcontainer{
+			position: relative;
+			top: 100px;
+			left:450px;
+		}
+		.filter{
+			width:800px;
+			height:75px;
+			font-size: 20px;
+			padding:10px;
+		}
+		.filter input,.filter label{
+			display:inline-block;
+			padding:5px;
+		}
+		.searchinput{
+			font-size: 25px;
+			border-radius: 12px;
+			border-width: 3px;
+			border-color: black;
+		}
+		.searchinput{
+			padding: 5px;
+			width: 800px;
+			height: 50px;
+		}
+		.searchbar button {
+			width: 50px;
+			height: 50px;
+			font-size: 25px;
+			background-color: white;
+			border-radius: 12px;
+			border-width: 3px;
+			border-color: black;
+		}
+		.results-container{
+			position:relative;
+			top:100px;
+			left:450px;
+			height:500px;
+			width:600px;
+			padding:10px;
+		}
+		.search-results{
+			width:800px;
+			min-height:100px;
+			border-color:black;
+			border-width: 2px;
+			border-style:solid;
+			padding:20px;
+		}
+		.search-result{
+			width:800px;
+			height:600px;
+			position:relative;
+			top:-400px;
+			left:450px;
+			padding:20px;
+		}
+		.sliderswitch{
+			display:inline-block;
+		}
+		#slider-content{
+			position:relative;
+			top:8px;
+			font-size:20px;
+			padding:10px;
+		}
+		.switch {
+		  position: relative;
+		  display: inline-block;
+		  width: 60px;
+		  height: 34px;
+		}
+		.switch input {
+		  opacity: 0;
+		  width: 0;
+		  height: 0;
+		}
+		.slider {
+		  position: absolute;
+		  cursor: pointer;
+		  top: 0;
+		  left: 0;
+		  right: 0;
+		  bottom: 0;
+		  background-color: #ccc;
+		  -webkit-transition: .4s;
+		  transition: .4s;
+		}
+
+		.slider:before {
+		  position: absolute;
+		  content: "";
+		  height: 26px;
+		  width: 26px;
+		  left: 4px;
+		  bottom: 4px;
+		  background-color: white;
+		  -webkit-transition: .4s;
+		  transition: .4s;
+		}
+
+		input:checked + .slider {
+		  background-color: #2196F3;
+		}
+
+		input:focus + .slider {
+		  box-shadow: 0 0 1px #2196F3;
+		}
+
+		input:checked + .slider:before {
+		  -webkit-transform: translateX(26px);
+		  -ms-transform: translateX(26px);
+		  transform: translateX(26px);
+		}
+		.slider.round {
+		  border-radius: 34px;
+		}
+
+		.slider.round:before {
+		  border-radius: 50%;
+		}
+		.personal{
+			display:inline-block;
+		}
+		em{
+			font-weight:bold;
+		}
+		.star{
+			padding:5px;
+		}
+	
+		.personal p{
+			padding:5px;
+		}
+		.service-content p{
+			padding:5px;
+		}
+		.checked {
+  			color: orange;
+		}
+		.des{
+			text-align:justify;
+		}
+		.heart{
+        color: #000;
+        position: absolute;
+        margin-left: auto;
+        margin-top: auto;
+        z-index: 999;
+        cursor: pointer;
+    }
+
+    .heart-checkbox{
+        display: none;
+    }
+
+
+    .heart-checkbox:checked + .heart {
+        color: red;
+    }
+{% endblock %}
+{% block content %}
+<div class="searchcontainer">
+<div class="searchbar">
+	<form action="{% url 'search' %}" method="POST">
+		{% csrf_token %}
+ 		 <input class="searchinput" name="searchvalue" type="text" placeholder="Search for the provider...">
+ 		 <button>
+ 		 	<i class="fas fa-search"></i>
+ 		 </button> 
+ 		<div class="filter">
+ 		 	<h4>Filter By:</h4>
+		 	<input type="radio" name="keyword" value="keyword">
+			<label for="html">Keyword</label>
+			<input type="radio" name="keyword" value="skills">
+			<label for="html">Skills</label>
+			<input type="radio" name="keyword" value="service">
+			<label for="html">Services</label>
+			<input type="radio" name="keyword" value="name">
+			<label for="html">Name</label>
+			<input type="radio" name="keyword" value="location">
+			<label for="html">Location</label>
+	    </div>
+	    <div class="sliderswitch">
+	      <label class="switch">
+			  <input type="checkbox" name="keyword" value="toggle">
+			  <span class="slider round"></span>  
+		</label>
+		<label id="slider-content">Search Service Categories</label>
+		</div>
+	</form>
+</div>
+</div>
+	<div class="results-container">
+		{% if searchvalue %}
+		 	<p class="content">you search for {{ searchvalue }}</p>
+		 	<br/>
+		 	<div class="results">
+		 	{% for s in providerobj %}
+		 	<br/>
+		 	  <div class="search-results">
+              <img src="https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png" alt="profile_pic" style="width:100px; height:120px;">
+              <div class="personal">
+              	  
+			 	   <p class="name"> <em>Name :</em> {{s.first_name}} {{s.last_name}} </p>
+			 	   <p class="email"><em> Email Id :</em> {{s.email}} </p>
+			 	   <p class="num"> <em> Mobile Number: </em>{{s.mobile_num}} </p>
+			 	   <p class="location"><em> Location : </em> {{s.location}}</p>
+		 	  </div>
+		 	  <p class="rate" style="float:right"><em>Dollar Per Hour : </em> {{s.hourly_rate}}
+		 	   <p class="star"> <em> Ratings :</em> 
+		 	   		{% if s.ratings == 1 %}
+		 	   		<span class="fa fa-star checked"></span>
+					<span class="fa fa-star"></span>
+					<span class="fa fa-star"></span>
+					<span class="fa fa-star"></span>
+					<span class="fa fa-star"></span>
+					{% endif %}
+					{% if s.ratings == 2 %}
+		 	   		<span class="fa fa-star checked"></span>
+					<span class="fa fa-star checked"></span>
+					<span class="fa fa-star"></span>
+					<span class="fa fa-star"></span>
+					<span class="fa fa-star"></span>
+					{% endif %}
+					{% if s.ratings == 3 %}
+		 	   		<span class="fa fa-star checked"></span>
+					<span class="fa fa-star checked"></span>
+					<span class="fa fa-star checked"></span>
+					<span class="fa fa-star"></span>
+					<span class="fa fa-star"></span>
+					{% endif %}
+					{% if s.ratings == 4 %}
+		 	   		<span class="fa fa-star checked"></span>
+					<span class="fa fa-star checked"></span>
+					<span class="fa fa-star checked"></span>
+					<span class="fa fa-star checked"></span>
+					<span class="fa fa-star"></span>
+					{% endif %}
+					{% if s.ratings == 5 %}
+		 	   		<span class="fa fa-star checked"></span>
+					<span class="fa fa-star checked"></span>
+					<span class="fa fa-star checked"></span>
+					<span class="fa fa-star checked"></span>
+					<span class="fa fa-star checked"></span>
+					{% endif %}
+
+				</p>
+		 	   <div class="service-content">
+			 	    <p class="service"><em> Services : </em> {{s.service}}</P>
+					<p class="skills"> <em> Skills : </em> {{s.skills}} </p>
+					<p class="des"><em> Description : </em>{{s.description}}</p>
+			   </div>
+			   <object> <a href="{% url 'user_wishlist' s.id %}" class="btn btn-primary" role="button">Add to wishlist</a></object>
+			   <object> <a href="{% url 'user_cart' s.id %}" class="btn btn-primary" role="button">Add to Cart</a></object>
+		 	  </div>
+		 	 {% endfor %} 
+		 	 <br/>
+             <br/>
+             <div> </div>
+			 {% else %}
+			 <div class="results">
+				 	{% for s in providerobj %}
+				 	<br/>
+				 	  <div class="search-results">
+				 	     <img src="https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png" alt="profile_pic" style="width:100px; height:120px;%">
+				 	    <div class="personal">
+				 	    
+						   <p class="name"> <em> Name : </em> {{s.first_name}} {{s.last_name}} </p>
+					 	   <p class="email"> <em> Email Id :</em> {{s.email}} </p>
+					 	   <p class="num"> <em> Mobile Number: </em> {{s.mobile_num}} </p>
+					 	   <p class="location"><em> Location : </em> {{s.location}}</p>
+		 	  			</div>
+		 	  			<p class="rate" style="float:right"><em>Dollar Per Hour : </em>{{s.hourly_rate}}
+		 	  			</p>
+		 	  <p class="star"> <em> Ratings :</em> 
+		 	   		{% if s.ratings == 1 %}
+		 	   		<span class="fa fa-star checked"></span>
+					<span class="fa fa-star"></span>
+					<span class="fa fa-star"></span>
+					<span class="fa fa-star"></span>
+					<span class="fa fa-star"></span>
+					{% else %}
+						{% if s.ratings == 2 %}
+			 	   		<span class="fa fa-star checked"></span>
+						<span class="fa fa-star checked"></span>
+						<span class="fa fa-star"></span>
+						<span class="fa fa-star"></span>
+						<span class="fa fa-star"></span>
+						{% else %}
+							{% if s.ratings == 3 %}
+				 	   		<span class="fa fa-star checked"></span>
+							<span class="fa fa-star checked"></span>
+							<span class="fa fa-star checked"></span>
+							<span class="fa fa-star"></span>
+							<span class="fa fa-star"></span>
+							{% else %}
+								{% if s.ratings == 4 %}
+					 	   		<span class="fa fa-star checked"></span>
+								<span class="fa fa-star checked"></span>
+								<span class="fa fa-star checked"></span>
+								<span class="fa fa-star checked"></span>
+								<span class="fa fa-star"></span>
+								{% else %}
+									{% if s.ratings == 5 %}
+						 	   		<span class="fa fa-star checked"></span>
+									<span class="fa fa-star checked"></span>
+									<span class="fa fa-star checked"></span>
+									<span class="fa fa-star checked"></span>
+									<span class="fa fa-star checked"></span>
+					{% endif %}
+					{% endif %}
+					{% endif %}
+					{% endif %}
+					{% endif %}
+
+				</p>
+		 	   <div class="service-content">
+			 	    <p class="service"><em> Services :</em> {{s.service}}</P>
+					<p class="skills"> <em> Skills : </em> {{s.skills}} </p>
+					<p class="des"><em> Description : </em>{{s.description}}</p>
+				</div>
+				<object> <a href="{% url 'user_wishlist' s.id %}" class="btn btn-primary" role="button">Add to wishlist</a></object>
+				<object> <a href="{% url 'user_cart' s.id %}" class="btn btn-primary" role="button">Add to Cart</a></object>
+			 </div>
+			 {% endfor %}
+		{% endif %}
+		 </div>
+		<br/>
+        <br/>
+        <div> </div>
+    </div>
+		<div class="search-result">
+				{% for s in serviceobj %}
+				<br/>
+				<p> {{s.service}} </p>	
+				{% endfor %}   
+				<br/>
+        		<br/>
+        		<div> </div>
+	    </div>
+       
+{% endblock%}
