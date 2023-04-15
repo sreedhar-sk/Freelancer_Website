@@ -1,0 +1,19 @@
+{% include "userprofile/mainchat.html" %}
+{% load custom_tags %}
+
+<div>
+<div class="chat-history">
+{% for chat in chats %}
+     <p class="you-chat">
+     {% if chat.sender == request.user.id %}
+        <em>You </em>:  {{ chat.message }}</p>
+    {% else %}
+         {% with sender_name=chat.sender|get_username %}
+            <p class="otherside"><em> {{ sender_name }} </em> : {{ chat.message }}</p>
+        {% endwith %}
+    {% endif %} 
+{% endfor %}
+</div>
+
+<a href="{% url 'send_message' sender_id recipient_id %}" class="sendmessage">Send Message</a>
+</div>

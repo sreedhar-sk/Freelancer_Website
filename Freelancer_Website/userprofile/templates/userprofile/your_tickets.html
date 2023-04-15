@@ -1,0 +1,85 @@
+{% extends "userprofile/profile.html" %}
+{% block style%}
+.searchcontainer{
+      position: relative;
+      top: 100px;
+      left:450px;
+    }
+#title{
+      position: relative;
+      top:100px;
+      left:750px;
+    }
+#else{
+  position: relative;
+  top:100px;
+  left:625px;
+  font-size:20px;
+}
+.search-results{
+      width:800px;
+      min-height:100px;
+      border-color:black;
+      border-width: 2px;
+      border-style:solid;
+      padding:20px;
+    }
+    .personal{
+      display:inline-block;
+    }
+    em{
+      font-weight:bold;
+    }
+    .star{
+      padding:5px;
+    }
+  
+    .personal p{
+      padding:5px;
+    }
+    .service-content p{
+      padding:5px;
+    }
+    .checked {
+        color: orange;
+    }
+    .des{
+      text-align:justify;
+    }
+
+{% endblock %}
+
+{% block content %}
+  <h1 id="title"> Your Tickets</h1>
+{% if ticketobj %}
+<div class="searchcontainer">
+      {% for s in ticketobj %}
+      <br/>
+        <div class="search-results">
+              <img src="https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png" alt="profile_pic" style="width:100px; height:120px;">
+              <div class="personal">
+                  
+           <p class="name"> <em>Task_Type :</em> {{s.task_type}} {{s.last_name}} </p>
+           <p class="email"><em> Service :</em> {{s.service}} </p>
+           <p class="num"> <em> Tools: </em>{{s.tools}} </p>
+           <p class="location"><em> Location : </em> {{s.location}}</p>
+        </div>
+        <p class="rate" style="float:right"><em>Dollar Per Hour : </em> {{s.hourly_rate}}
+        
+
+        </p>
+         <div class="service-content">
+          <p class="skills"> <em> Time Frame : </em> {{s.time_frame}} </p>
+          <p class="des"><em> User Stories : </em>{{s.user_stories}}</p>
+         </div>
+        </div>
+       {% endfor %} 
+{% else %}
+<br/>
+<h6> You have not raised any tickets yet</h6>
+{%endif%}
+       <br/>
+             <br/>
+             <div> </div>
+
+{% endblock%}

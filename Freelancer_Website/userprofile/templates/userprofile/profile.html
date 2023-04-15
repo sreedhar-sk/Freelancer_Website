@@ -153,14 +153,21 @@ body{
 .searchcontainer{
       position: relative;
       top: 100px;
-      left:450px;
+      left:350px;
       height: 700px;
       overflow-y: inherit ;
     }
 .searchcontainer1{
       position: relative;
       top: -600px;
-      left:900px;
+      left:800px;
+      height: 700px;
+      overflow-y: inherit ;
+    }
+.searchcontainer2{
+      position: relative;
+      top: -1345px;
+      left:1300px;
       height: 700px;
       overflow-y: inherit ;
     }
@@ -168,6 +175,11 @@ body{
       position: relative;
       top:100px;
       left:750px;
+    }
+#title1{
+      position: relative;
+      top:-1340px;
+      left:1375px;
     }
 #else{
   position: relative;
@@ -230,7 +242,7 @@ body{
         </div> 
       </div>  
     {% block content%}
- <h1 id="title"> Favourites </h1>
+ <h1 id="title"> User Favourites </h1>
 {% if skillsobj %}
 <div class="searchcontainer">
       {% for s in skillsobj %}
@@ -363,6 +375,34 @@ body{
 <br/>
 <div></div>
 </div>
+{% if ticketobj %}
+<h1 id="title1"> Provider Favourites </h1>
+<div class="searchcontainer2">
+      {% for s in ticketobj %}
+      <br/>
+        <div class="search-results">
+              <img src="https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png" alt="profile_pic" style="width:100px; height:120px;">
+              <div class="personal">
+                  
+           <p class="name"> <em>Task_Type :</em> {{s.task_type}} {{s.last_name}} </p>
+           <p class="email"><em> Service :</em> {{s.service}} </p>
+           <p class="num"> <em> Tools: </em>{{s.tools}} </p>
+           <p class="location"><em> Location : </em> {{s.location}}</p>
+        </div>
+        <p class="rate" style="float:right"><em>Dollar Per Hour : </em> {{s.hourly_rate}}
+        
+
+        </p>
+         <div class="service-content">
+          <p class="skills"> <em> Time Frame : </em> {{s.time_frame}} </p>
+          <p class="des"><em> User Stories : </em>{{s.user_stories}}</p>
+         </div>
+        </div>
+       {% endfor %} 
+{%endif%}
+       <br/>
+             <br/>
+             <div> </div>
     {% endblock %}
     <nav class="left-nav">
       <ul>
@@ -381,9 +421,21 @@ body{
           <i class='fab fa-dev' style='font-size:18px'></i>
           <span class="nav-item">Provide Service</span>
         </a></li>
-        <li><a href="#">
+        <li><a href="/your_tickets">
           <i class="fas fa-ticket-alt" style="font-size:18px;"></i>
           <span class="nav-item">Your Tickets</span>
+        </a></li>
+          <li><a href="/mainchat">
+          <i class="fa fa-wechat" style="font-size:18px;"></i>
+          <span class="nav-item"style="padding-left:18px;">Live Chat</span>
+        </a></li>
+        <li><a href="/invite">
+          <i class="fas fa-user-friends" style="font-size:18px;"></i>
+          <span class="nav-item">Invite A Friend</span>
+        </a></li>
+        <li><a href="/activity">
+          <i class="fas fa-clipboard-list" style="font-size:18px;"></i>
+          <span class="nav-item">Your Activities</span>
         </a></li>
         <li><a href="#">
           <i class="fas fa-wallet" style="font-size:18px;"></i>

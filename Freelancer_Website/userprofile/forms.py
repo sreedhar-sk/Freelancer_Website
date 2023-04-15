@@ -47,7 +47,7 @@ class ticketform(ModelForm):
 		widgets={
 			"task_type": forms.TextInput(attrs={'class':'form-control'}),
 			"user_stories": forms.Textarea(attrs={'class':'form-control','cols': 102, 'rows': 20}),
-			"service": forms.EmailInput(attrs={'class':'form-control'}),
+			"service": forms.TextInput(attrs={'class':'form-control'}),
 			"tools": forms.Textarea(attrs={'class':'form-control','cols': 102, 'rows': 20}),
 			"time_frame": forms.TextInput(attrs={'class':'form-control'}),
 			"location": forms.TextInput(attrs={'class':'form-control'}),
@@ -70,3 +70,13 @@ class EditForm(UserChangeForm):
 			"first_name": forms.TextInput(attrs={'class':'form-control'}),
 			"last_name": forms.TextInput(attrs={'class':'form-control'}),
 		}
+
+
+class InviteForm(forms.Form):
+	name = forms.CharField(max_length=30,widget=forms.TextInput(attrs={'class':'form-control'}),label="What is your Friend's Name?",)
+	email = forms.EmailField(max_length=50,widget=forms.EmailInput(attrs={'class':'form-control'}),label="What is your Friend's Email Address?",)
+	content = forms.CharField(widget=forms.Textarea(attrs={'class':'form-control','cols': 72, 'rows': 10}),label="Invitation message for your Friend")
+
+
+class ChatForm(forms.Form):
+    message = forms.CharField(widget=forms.Textarea(attrs={'class': 'form-control','cols': 72, 'rows': 5,"placeholder":"type your message....."}),label="")

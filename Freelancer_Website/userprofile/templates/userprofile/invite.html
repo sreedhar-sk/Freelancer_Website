@@ -1,0 +1,67 @@
+{% extends "userprofile/profile.html" %}
+{% block style%}
+   .model-form{
+    position: relative;
+    top: 100px;
+    left:625px;
+    box-sizing:border-box;
+    width:525px;
+    height:600px;
+    border-color:black;
+    border-width:2px;
+    }
+   #title{
+      padding:10px;
+      margin:0px;
+      font-weight:bold;
+      color: black;
+      text-align:center;
+      font-family: 'Shantell Sans', cursive;
+      font-size:50px;
+    }
+    .form{
+      padding:5px;
+    }
+   #div_id_name,#div_id_email, #div_id_content{
+    padding:10px;
+   }
+
+   .model-form input, .model-form label{
+      color:black;
+      font-weight:bold;
+      font-family: 'Shantell Sans', cursive;
+    }
+    #div_id_name input,#div_id_email input,#div_id_content input{
+    padding:10px;
+    width:500px;
+    font-size:18px;
+    font-weight:normal;
+   }
+    .button{
+      background-color: grey;
+      font-size: 20px;
+      padding: 10px 12px;
+      border-radius: 12px;
+      color:black;
+      font-weight:bold;
+      border: 2px solid black;
+    }
+{% endblock %}
+
+{% block content %}
+
+{% load crispy_forms_tags %}
+
+{% if submitted %}
+    Your Details is Added to the System
+{% else %}
+    <div class="model-form">
+    <h1 id="title">Invite A Friend</h1>
+      <form class="form" method="POST">
+        {% csrf_token %}
+        {{ form|crispy }}
+        <button class="button" type="submit"> Invite </button>
+    </form>
+    </div>
+{% endif %}
+{% endblock%}

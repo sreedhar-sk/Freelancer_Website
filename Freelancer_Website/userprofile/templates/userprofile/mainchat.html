@@ -1,0 +1,93 @@
+{% extends "userprofile/profile.html" %}
+{% block style %}
+.chat{
+    position:relative;
+    top:100px;
+    left:500px;
+}
+#title{
+    position: relative;
+    left: 300px;
+}
+#chat-with{
+    padding: 10px;
+
+}
+.users{
+    width:200px;
+    height: 400px;
+    overflow-y:auto;
+    overflow-x:hidden;
+}
+.list{
+    padding:10px;
+    list-style-type: none;
+}
+.list a{
+    text-decoration:none;
+}
+.list a:hover{
+    font-weight:bold;
+}
+.chat-history{
+    border:0.5px solid;
+    width:500px;
+    height: 400px;
+    position:relative;
+    top:-300px;
+    left:720px;
+    padding:10px;
+    overflow-y:auto;
+    overflow-x:hidden;
+}
+.chat-history em{
+    font-weight:bold;
+
+}
+.you-chat{
+    position:relative;
+    left:300px;
+    right:0px;
+    padding-top:10px;
+    padding-down:10px;
+}
+.sendmessage{
+    position:relative;
+    top:-280px;
+    left:720px;
+    padding:10px;
+}
+.message-box{
+    position:relative;
+    top:-250px;
+    left:720px;
+}
+.form-control{
+    padding:10px;
+}
+.button{
+    background-color: #4CAF50;
+    font-size: 18px;
+    font-weight:bold;
+    padding: 10px 24px;
+    border-radius: 12px;
+    border:none;
+}
+{% endblock%}
+{% block content%}
+<div class="chat">
+<div id="header">
+        <h1 id="title">Chat App</h1>
+    </div>
+    <div id="content">
+        <h2 id="chat-with">Available Users</h2>
+        <div class="users">
+        <ul>
+            {% for recipient in users %}
+            <li class="list"><a href="{% url 'chat' sender_id=user.id recipient_id=recipient.id %}">{{ recipient.username }}</a></li>
+            {% endfor %}
+        </ul>
+    </div>
+    </div>
+</div>
+{%endblock%}

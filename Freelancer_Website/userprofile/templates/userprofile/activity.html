@@ -1,0 +1,65 @@
+{% extends "userprofile/profile.html" %}
+{% block style%}
+.resultcontainer{
+      position: relative;
+      top: -700px;
+      left:500px;
+      box-sizing: border-box;
+      width:1000px;
+      height:700px;
+      overflow-y:inherit;
+    }
+#title{
+      position: relative;
+      top:100px;
+      left:750px;
+    }
+#else{
+  position: relative;
+  top:100px;
+  left:625px;
+  font-size:20px;
+}
+
+th{
+  padding:20px;
+  text-align:center;
+}
+td{
+  padding:20px;
+  text-align:center;
+
+}
+{% endblock %}
+
+{% block content %}
+  <h1 id="title">Your Activities</td></h1>
+{% if activityobj %}
+<table class="resultcontainer">
+    <thead>
+        <tr>
+            <th>Action</th>
+            <th>Timestamp</th>
+            <th>Details</th>
+        </tr>
+    </thead>
+    <tbody>
+      {% for s in activityobj %}
+      <br/>
+           <tr>
+                <td>{{ s.action }}</td>
+                <td>{{ s.timestamp }}</td>
+                <td>{{ s.details }}</td>
+            </tr>    
+       {% endfor %} 
+      </tbody>
+</table>
+{% else %}
+<br/>
+<p id="else" width = "100%"> No activities have been logged yet</p>
+{%endif%}
+       <br/>
+             <br/>
+             <div> </div>
+
+{% endblock%}
