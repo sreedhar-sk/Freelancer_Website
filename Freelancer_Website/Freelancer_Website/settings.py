@@ -9,7 +9,7 @@ https://docs.djangoproject.com/en/4.1/topics/settings/
 For the full list of settings and their values, see
 https://docs.djangoproject.com/en/4.1/ref/settings/
 """
-
+import os
 from pathlib import Path
 from django.contrib.messages import constants as messages
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -23,9 +23,9 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = "django-insecure-g^!%*vx66e74hgb4-92*dk2y0qi*=m9e$m)4o+0gj4g5^#!4b5"
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
-ALLOWED_HOSTS = ['127.0.0.1:8000']
+ALLOWED_HOSTS = ['*']
 
 
 # Application definition
@@ -46,6 +46,9 @@ INSTALLED_APPS = [
     "allauth.account",
     "allauth.socialaccount",
     "allauth.socialaccount.providers.google",
+    "userprofile.apps.UserProfileConfig",
+    "import_export",
+    "django_filters", 
 ]
 
 SITE_ID=1
@@ -76,6 +79,9 @@ TEMPLATES = [
                 "django.contrib.auth.context_processors.auth",
                 "django.contrib.messages.context_processors.messages",
             ],
+        'libraries':{
+            'custom_tags': 'userprofile.templatetags.custom_tags',
+            }
         },
     },
 ]
@@ -90,6 +96,13 @@ MESSAGE_TAGS = {
 }
 
 WSGI_APPLICATION = "Freelancer_Website.wsgi.application"
+
+
+CHANNEL_LAYERS = {
+    "default": {
+        "BACKEND": "channels.layers.InMemoryChannelLayer"
+    }
+}
 
 
 # Database
@@ -127,7 +140,7 @@ AUTH_PASSWORD_VALIDATORS = [
 
 LANGUAGE_CODE = "en-us"
 
-TIME_ZONE = "UTC"
+TIME_ZONE = "America/Montreal"
 
 USE_I18N = True
 
@@ -164,4 +177,22 @@ SOCIALACCOUNT_PROVIDERS={
     }
 }
 REGISTER_REDIRECT_URL="/login"
-LOGIN_REDIRECT_URL="/home"
+LOGIN_REDIRECT_URL="/profile"
+
+STATIC_URL= '/static/'
+
+MEDIA_URL= '/images/'
+
+STATICFILES_DIRS =[
+    os.path.join(BASE_DIR, 'static')
+]
+
+MEDIA_ROOT = os.path.join(BASE_DIR,'static/images')
+
+
+EMAIL_BACKEND='django.core.mail.backends.smtp.EmailBackend'
+EMAIL_HOST='smtp.gmail.com'
+EMAIL_USE_TLS=True
+EMAIL_PORT=587
+EMAIL_HOST_USER="findyourprogrammer@gmail.com"
+EMAIL_HOST_PASSWORD="ljkpqudrocudtoit"
